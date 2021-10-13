@@ -6,13 +6,13 @@ const Turn = require('../src/Turn');
 const Card = require('../src/Card');
 const Deck = require('../src/Deck');
 
-describe('Round', function(){
+describe('Round', function() {
 
-  it('should be a function', function(){
+  it('should be a function', function() {
     expect(Round).to.be.a('function')
   })
 
-  it('should have a current card', function(){
+  it('should have a current card', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -26,7 +26,7 @@ describe('Round', function(){
     expect(round.deck.cards[0]).to.equal(card1)
   })
 
-  it('should be able to return the current card', function(){
+  it('should be able to return the current card', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -40,7 +40,7 @@ describe('Round', function(){
     expect(round.returnCurrentCard()).to.equal(card1)
   })
 
-  it('should be able to have new turns', function(){
+  it('should be able to have new turns', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -54,7 +54,7 @@ describe('Round', function(){
     expect(round.turns).to.equal(1)
   })
 
-  it('should instantiate a new Turn when a guess is made', function(){
+  it('should instantiate a new Turn when a guess is made', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -67,7 +67,7 @@ describe('Round', function(){
     expect(round.currentTurn).to.be.an.instanceof(Turn)
   })
 
-  it('should be able to update the current card to the next card in the list', function(){
+  it('should be able to update the current card to the next card in the list', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -80,7 +80,7 @@ describe('Round', function(){
     expect(round.returnCurrentCard()).to.equal(card2)
   })
 
-  it('should be able to evaluate guesses as true', function(){
+  it('should be able to evaluate guesses as true', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -94,7 +94,7 @@ describe('Round', function(){
     expect(round.takeTurn('sea otter', card1)).to.equal('correct!')
   })
 
-  it('should be able to evaluate guesses as false', function(){
+  it('should be able to evaluate guesses as false', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -107,5 +107,46 @@ describe('Round', function(){
     round.takeTurn('spleen', card2)
 
     expect(round.takeTurn('spleen', card2)).to.equal('incorrect!')
+  })
+
+  it('should be able to calculate the percentage of correct guesses', function() {
+    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const card4 = new Card(19, 'What year was I born?', [1994, 1894, 1995], 1994);
+
+    const cards = [card1, card2, card3, card4]
+    const deck = new Deck(cards)
+    const round = new Round(deck)
+
+    round.takeTurn('sea otter', card1)
+    round.takeTurn('spleen', card2)
+    round.takeTurn('Fitzgerald', card3)
+    round.takeTurn(1894, card4)
+
+    round.calculatePercentCorrect();
+
+    expect(round.calculatePercentCorrect()).to.equal('50%')
+  })
+
+  it('should be able to end the round', function() {
+    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const card4 = new Card(19, 'What year was I born?', [1994, 1894, 1995], 1994);
+
+    const cards = [card1, card2, card3, card4]
+    const deck = new Deck(cards)
+    const round = new Round(deck)
+
+    round.takeTurn('sea otter', card1)
+    round.takeTurn('spleen', card2)
+    round.takeTurn('Fitzgerald', card3)
+    round.takeTurn(1894, card4)
+
+    round.calculatePercentCorrect();
+    round.endRound();
+
+    expect(round.endRound()).to.equal('** Round over! ** You answered 50% of the questions correctly!')
   })
 })
