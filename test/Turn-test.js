@@ -53,9 +53,8 @@ describe('Turn Methods', function() {
   })
 
   it('should be able to evaluate if a guess is true', function() {
-    const card = new Card(1, 'Where is the statue of liberty?', ['New York City, Paris, London'], 'New York City')
+    const card = new Card(1, 'Where is the statue of liberty?', ['New York City', 'Paris', 'London'], 'New York City')
     const turn = new Turn('New York City', card);
-
     turn.evaluateGuess();
 
     expect(turn.evaluateGuess()).to.equal(true);

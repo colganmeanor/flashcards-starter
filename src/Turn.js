@@ -18,12 +18,15 @@ class Turn{
     if (this.guess === this.card.correctAnswer){
       return true
     } else {
+      // console.log('should be wrong')
       return false;
     }
   }
 
   giveFeedback(){
+    console.log(this.card.correctAnswer)
     if (this.guess === this.card.correctAnswer){
+      console.log(this.guess)
       return 'correct!'
     } else {
       return 'incorrect!'
