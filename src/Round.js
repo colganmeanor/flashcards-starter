@@ -21,55 +21,39 @@ class Round {
     return this.currentCard;
   }
 
-  // takeTurn(guess, card) {
-  //   this.turns++;
-  //   this.deck.cards.shift();
-  //   this.deck.cards.push(card);
-  //   var turn = new Turn(guess, card);
-  //   this.currentTurn = turn;
-  //   switch (turn.evaluateGuess()) {
-  //     case true:
-  //       this.correctGuesses.push(card.id)
-  //       return turn.giveFeedback();
-  //       break;
-  //     case false:
-  //       this.incorrectGuesses.push(card.id);
-  //       return turn.giveFeedback();
-  //       break
-  //   }
-  // }
-
-  takeTurn(guess){
+  takeTurn(guess) {
+    // console.log(this.currentCard)
     var turn = new Turn(guess, this.currentCard);
     this.currentTurn = turn;
     switch (turn.evaluateGuess()) {
-      case true:
-        this.correctGuesses.push(this.currentCard.id)
-        this.updateCard();
-        return turn.giveFeedback();
-        break;
-      case false:
-        this.incorrectGuesses.push(this.currentCard.id);
-        this.updateCard();
-        return turn.giveFeedback();
-        break
+    case true:
+      this.correctGuesses.push(this.currentCard.id)
+      this.updateCard();
+      return turn.giveFeedback();
+      break;
+    case false:
+      this.incorrectGuesses.push(this.currentCard.id);
+      this.updateCard();
+      return turn.giveFeedback();
+      break
     }
 
   }
 
   calculatePercentCorrect() {
-    this.percentCorrect = (this.correctGuesses.length / this.deck.cards.length) * 100;
+    this.percentCorrect = (this.correctGuesses.length / 30) * 100;
     return `${this.percentCorrect}%`
   }
 
-  endRound(){
+  endRound() {
+    this.calculatePercentCorrect();
+    console.log(`** Round over! ** You answered ${this.percentCorrect}% of the questions correctly!`)
     return `** Round over! ** You answered ${this.percentCorrect}% of the questions correctly!`
   }
 
-  updateCard(){
+  updateCard() {
     this.deck.cards.shift();
     this.currentCard = this.deck.cards[0];
-    // this.deck.cards.push(this.currentCard);
     this.turns++;
   }
 
