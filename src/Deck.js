@@ -1,4 +1,4 @@
-const Card = require('../src/Card');
+// const Card = require('./src/Card');
 
 class Deck {
   constructor(cards) {

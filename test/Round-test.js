@@ -49,7 +49,7 @@ describe('Round', function() {
     const deck = new Deck(cards)
     const round = new Round(deck)
 
-    round.takeTurn('sea otter', card1)
+    round.takeTurn('sea otter')
 
     expect(round.turns).to.equal(1)
   })
@@ -63,7 +63,7 @@ describe('Round', function() {
     const deck = new Deck(cards)
     const round = new Round(deck)
 
-    round.takeTurn('sea otter', card1)
+    round.takeTurn('sea otter')
     expect(round.currentTurn).to.be.an.instanceof(Turn)
   })
 
@@ -76,7 +76,7 @@ describe('Round', function() {
     const deck = new Deck(cards)
     const round = new Round(deck)
 
-    round.takeTurn('sea otter', card1)
+    round.takeTurn('sea otter')
     expect(round.returnCurrentCard()).to.equal(card2)
   })
 
@@ -89,9 +89,7 @@ describe('Round', function() {
     const deck = new Deck(cards)
     const round = new Round(deck)
 
-    round.takeTurn('sea otter', card1)
-
-    expect(round.takeTurn('sea otter', card1)).to.equal('correct!')
+    expect(round.takeTurn('sea otter')).to.equal('correct!')
   })
 
   it('should be able to evaluate guesses as false', function() {
@@ -103,10 +101,10 @@ describe('Round', function() {
     const deck = new Deck(cards)
     const round = new Round(deck)
 
-    round.takeTurn('sea otter', card1)
-    round.takeTurn('spleen', card2)
+    round.takeTurn('sea otter')
+    round.takeTurn('spleen')
 
-    expect(round.takeTurn('spleen', card2)).to.equal('incorrect!')
+    expect(round.takeTurn('spleen')).to.equal('incorrect!')
   })
 
   it('should be able to calculate the percentage of correct guesses', function() {
@@ -119,14 +117,14 @@ describe('Round', function() {
     const deck = new Deck(cards)
     const round = new Round(deck)
 
-    round.takeTurn('sea otter', card1)
-    round.takeTurn('spleen', card2)
-    round.takeTurn('Fitzgerald', card3)
-    round.takeTurn(1894, card4)
+    round.takeTurn('sea otter')
+    round.takeTurn('spleen')
+    round.takeTurn('Fitzgerald')
+    round.takeTurn(1894)
 
     round.calculatePercentCorrect();
 
-    expect(round.calculatePercentCorrect()).to.equal('50%')
+    expect(round.calculatePercentCorrect()).to.equal('6.666666666666667%')
   })
 
   it('should be able to end the round', function() {
@@ -139,14 +137,14 @@ describe('Round', function() {
     const deck = new Deck(cards)
     const round = new Round(deck)
 
-    round.takeTurn('sea otter', card1)
-    round.takeTurn('spleen', card2)
-    round.takeTurn('Fitzgerald', card3)
-    round.takeTurn(1894, card4)
+    round.takeTurn('sea otter')
+    round.takeTurn('spleen')
+    round.takeTurn('Fitzgerald')
+    round.takeTurn(1894)
 
     round.calculatePercentCorrect();
     round.endRound();
 
-    expect(round.endRound()).to.equal('** Round over! ** You answered 50% of the questions correctly!')
+    expect(round.endRound()).to.equal('** Round over! ** You answered 6.666666666666667% of the questions correctly!')
   })
 })
