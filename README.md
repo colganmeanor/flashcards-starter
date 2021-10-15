@@ -37,4 +37,3 @@ Mod1 2108 FE
 
 ## Project Specs
   - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/flash-cards.html)
-  - My deployed page can be found [here]()
