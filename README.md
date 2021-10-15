@@ -11,6 +11,9 @@ Mod1 2108 FE
 
 ## Abstract
   This project is designed to be opened, interacted, and played in the terminal/CLI. The goal of this project is to allow the user to interact with a series of flash cards that are shown to the user via the CLI. The user is presented with answer choices, and must use their keyboard to choose their answer choice, and proceed through the entire deck of cards. Once the round is completed, the user is presented with the percent of cards/guesses they answered correctly. 
+  
+![Flash Cards - Game in Progress (1)](https://user-images.githubusercontent.com/87510749/137413220-e9728407-bb1b-426b-8fcf-7cbd9d7ef4da.gif)
+
 
 
 ## Technologies
