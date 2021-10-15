@@ -20,7 +20,7 @@ Mod1 2108 FE
 
 
 ## Install + Setup
-  - clone this repo: https://github.com/colganmeanor/colgan-tic-tac-toe
+  - clone this repo: https://github.com/colganmeanor/flashcards-starter
   - On the command line, type: **$ node index.js**
 
 ## Contributors
