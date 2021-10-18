@@ -13,16 +13,13 @@ class Round {
     this.percentCorrect = null;
   }
 
-  // returnCurrentCard() {
-  //   return this.deck.cards[0]
-  // }
+
 
   returnCurrentCard() {
     return this.currentCard;
   }
 
   takeTurn(guess) {
-    // console.log(this.currentCard)
     var turn = new Turn(guess, this.currentCard);
     this.currentTurn = turn;
     switch (turn.evaluateGuess()) {
