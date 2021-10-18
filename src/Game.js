@@ -36,12 +36,3 @@ class Game {
 
 
 module.exports = Game;
-
-// not doing testing for printMessage or printQuestion
-// will need a startGame method
-// start method needs to do the following:
-// 1. instantiate cards using the prototypeData file
-// 2. instantiate a new deck using the cards
-// 3. instantiate a round using the deck
-// 4. invoke printMessage
-// 5. invoke printQuestion
